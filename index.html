@@ -19,14 +19,13 @@
     }
     #content {
       max-width: 600px;
+      padding: 20px;
     }
     img {
       max-width: 200px; /* smaller image */
       border-radius: 15px;
-      margin: 20px 0;
+      margin: 20px auto;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
     }
     button {
       margin-top: 20px;
@@ -45,13 +44,11 @@
   </style>
 </head>
 <body>
-  <div id="content">
-    <!-- Content goes here -->
-  </div>
+  <div id="content"></div>
 
   <!-- Audio -->
   <audio id="bg-music" loop>
-    <source src="APO_Hiking_Society_-_When_I_Met_You_Official_Lyric_Video_(128k) (online-audio-converter.com).mp3" type="audio/mp3">
+    <source src="APO_Hiking_Society_-_When_I_Met_You.mp3" type="audio/mp3">
   </audio>
 
   <script>
@@ -63,7 +60,19 @@
       { text: "No words can explain how much you mean to me.", img: "Messenger_creation_4FAF1D83-5887-4F86-9593-2D4E116ECDD7.jpeg" },
       { text: "I want to hold you close forever 💫" },
       { text: "Even galaxies would envy your beauty 🌌" },
-      { text: "iloveyouuu 💜" , stopMusic: true }
+      { text: "You make life worth living." },
+      { text: "I’ll always stand by your side, no matter what." },
+      { text: "Your smile is brighter than the stars ✨" },
+      { text: "The universe feels warmer with you in it." },
+      { text: "My heart beats only for you 💜" },
+      { text: "You’re my safe place, my home." },
+      { text: "You are my greatest blessing." },
+      { text: "You’re the reason behind my happiness." },
+      { text: "Every second with you is priceless." },
+      { text: "Loving you is the best decision of my life." },
+      { text: "I’ll cherish you until the end of time." },
+      { text: "No matter what happens, my love stays." },
+      { text: "iloveyouuu 💜", stopMusic: true }
     ];
 
     let currentPage = 0;
@@ -88,7 +97,7 @@
       btn.textContent = (currentPage === pages.length - 1) ? "I love youuu 💜" : "Next ➜";
       btn.onclick = () => {
         if (currentPage === 0) {
-          bgMusic.play();
+          bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
         }
         if (page.stopMusic) {
           bgMusic.pause();
