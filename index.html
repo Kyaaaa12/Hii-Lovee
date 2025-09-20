@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MyBaby</title>
+  <title>Galaxy Love Story</title>
   <style>
     body {
       margin: 0;
@@ -17,6 +17,9 @@
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      transition: background 1s ease-in-out;
+      background-position: center;
+      background-size: cover;
     }
 
     @keyframes galaxyFlow {
@@ -60,41 +63,82 @@
 <body>
   <!-- Page 1 -->
   <section id="page1" class="active">
-    <h1>💫 Welcome My Love  💫</h1>
-    <button onclick="nextPage(2)">Next →</button>
+    <h1>💫 Welcome, My Love 💫</h1>
+    <button onclick="startStory()">Next →</button>
   </section>
 
   <!-- Page 2 -->
   <section id="page2">
-    <h1>🌌 Every star reminds me of you 🌌</h1>
+    <h1>🌌 Every star in the galaxy reminds me of you 🌌</h1>
     <button onclick="nextPage(3)">Next →</button>
   </section>
 
   <!-- Page 3 -->
   <section id="page3">
-    <h1>💜 I Love You baby 💜</h1>
+    <h1>💜 My love for you is infinite 💜</h1>
     <button onclick="nextPage(4)">Next →</button>
   </section>
 
   <!-- Page 4 -->
   <section id="page4">
-    <h1>💍 Forever and Always, My babyy 💍</h1>
-    <button onclick="nextPage(1)">Back to Start</button>
+    <h1>💍 Forever and Always, your baby loves you sm💍</h1>
+    <button onclick="stopMusic()">iloveyouuu too 💜</button>
   </section>
 
   <!-- Background music -->
-  <audio id="bg-music" autoplay loop>
+  <audio id="bg-music" loop>
     <source src="APO_Hiking_Society_-_When_I_Met_You_Official_Lyric_Video_(128k) (online-audio-converter.com).mp3" type="audio/mpeg">
     Your browser does not support the audio tag.
   </audio>
 
   <script>
-    function nextPage(pageNumber) {
-      // Hide all pages
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      // Show the chosen page
-      document.getElementById("page" + pageNumber).classList.add("active");
+    const bgMusic = document.getElementById("bg-music");
+
+    // Backgrounds: only Page 2 & 3 have images
+    const backgrounds = {
+      page1: "gradient",
+      page2: "Messenger_creation_4FAF1D83-5887-4F86-9593-2D4E116ECDD7.jpeg",
+      page3: "Messenger_creation_555093F4-980B-4883-ABFF-8B0DC22F98DF.jpeg",
+      page4: "gradient"
+    };
+
+    function setBackground(pageId) {
+      if (backgrounds[pageId] === "gradient") {
+        // Bring back the animated purple galaxy
+        document.body.style.background = "linear-gradient(135deg, #2b1055, #7597de, #3a0ca3, #f72585)";
+        document.body.style.backgroundSize = "400% 400%";
+        document.body.style.animation = "galaxyFlow 20s ease infinite";
+      } else {
+        // Set galaxy image
+        document.body.style.background = backgrounds[pageId];
+        document.body.style.backgroundSize = "cover";
+        document.body.style.animation = "none";
+      }
     }
+
+    function startStory() {
+      bgMusic.play();
+      nextPage(2);
+    }
+
+    function nextPage(pageNumber) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      const next = document.getElementById("page" + pageNumber);
+      next.classList.add("active");
+
+      // Change background depending on page
+      setBackground("page" + pageNumber);
+    }
+
+    function stopMusic() {
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+      alert("💜 iloveyouuu 💜");
+      setBackground("page4"); // back to gradient
+    }
+
+    // Initial gradient
+    setBackground("page1");
   </script>
 </body>
-  </html>
+</html>
