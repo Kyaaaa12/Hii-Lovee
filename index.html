@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For My Love ❤️</title>
+  <!-- Link to CSS for styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 🎶 Background Music (loops forever) -->
+  <audio autoplay loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- 💌 Main Love Content -->
+  <div class="container">
+    <!-- Heading with typewriter effect -->
+    <h1 id="message">Hi My Love 💌</h1>
+
+    <!-- A small romantic text -->
+    <p>You’re the reason my world feels magical every day. ✨</p>
+
+    <!-- Button to go to the next page -->
+    <a href="page2.html" class="btn">Next ➡️</a>
+  </div>
+
+  <!-- 💻 JavaScript Section -->
+  <!-- Link the external JS file -->
+  <script src="script.js"></script>
+
+  <!-- Inline JS for controlling effects -->
+  <script>
+    // Run typewriter effect for the "Hi My Love 💌" text
+    window.onload = () => {
+      typeWriterEffect("message", 100); // 100ms per letter
+    };
+  </script>
+</body>
+</html>
