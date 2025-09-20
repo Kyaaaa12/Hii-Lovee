@@ -2,38 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For My Love ❤️</title>
-  <!-- Link to CSS for styling -->
-  <link rel="stylesheet" href="style.css">
+  <title>MyBaby</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #2b1055, #7597de, #3a0ca3, #f72585);
+      background-size: 400% 400%;
+      animation: galaxyFlow 20s ease infinite;
+      color: white;
+      font-family: 'Trebuchet MS', sans-serif;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    @keyframes galaxyFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 0px 0px 15px #fff, 0px 0px 30px #f72585;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #f72585;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-weight: bold;
+      box-shadow: 0px 0px 20px #f72585;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #3a0ca3;
+      box-shadow: 0px 0px 25px #fff;
+    }
+  </style>
 </head>
 <body>
-  <!-- 🎶 Background Music (loops forever) -->
-  <audio autoplay loop>
+  <!-- Page 1 -->
+  <section id="page1" class="active">
+    <h1>💫 Welcome My Love  💫</h1>
+    <button onclick="nextPage(2)">Next →</button>
+  </section>
+
+  <!-- Page 2 -->
+  <section id="page2">
+    <h1>🌌 Every star reminds me of you 🌌</h1>
+    <button onclick="nextPage(3)">Next →</button>
+  </section>
+
+  <!-- Page 3 -->
+  <section id="page3">
+    <h1>💜 I Love You baby 💜</h1>
+    <button onclick="nextPage(4)">Next →</button>
+  </section>
+
+  <!-- Page 4 -->
+  <section id="page4">
+    <h1>💍 Forever and Always, My babyy 💍</h1>
+    <button onclick="nextPage(1)">Back to Start</button>
+  </section>
+
+  <!-- Background music -->
+  <audio id="bg-music" autoplay loop>
     <source src="APO_Hiking_Society_-_When_I_Met_You_Official_Lyric_Video_(128k) (online-audio-converter.com).mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
   </audio>
 
-  <!-- 💌 Main Love Content -->
-  <div class="container">
-    <!-- Heading with typewriter effect -->
-    <h1 id="message">Hi My Love 💌</h1>
-
-    <!-- A small romantic text -->
-    <p>You’re the reason my world feels magical every day. ✨</p>
-
-    <!-- Button to go to the next page -->
-    <a href="page2.html" class="btn">Next ➡️</a>
-  </div>
-
-  <!-- 💻 JavaScript Section -->
-  <!-- Link the external JS file -->
-  <script src="script.js"></script>
-
-  <!-- Inline JS for controlling effects -->
   <script>
-    // Run typewriter effect for the "Hi My Love 💌" text
-    window.onload = () => {
-      typeWriterEffect("message", 100); // 100ms per letter
-    };
+    function nextPage(pageNumber) {
+      // Hide all pages
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      // Show the chosen page
+      document.getElementById("page" + pageNumber).classList.add("active");
+    }
   </script>
 </body>
-</html>
+  </html>
