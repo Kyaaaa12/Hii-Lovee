@@ -2,53 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For You 💜</title>
-  <link rel="stylesheet" href="style.css">
+  <title>For My Love</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #2b0040, #000);
+      color: #d8b4f8;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .page {
+      display: none;
+      padding: 20px;
+    }
+    .active {
+      display: block;
+    }
+    img {
+      max-width: 80%;
+      border-radius: 15px;
+      box-shadow: 0 0 30px #a855f7;
+    }
+    button {
+      background: #6b21a8;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #9333ea;
+    }
+  </style>
 </head>
 <body>
-  <!-- Page 1 (Image Only) -->
-<div class="page" id="page1">
-  <img src="love.jpg" alt="Love Start" class="page-img">
-  <button onclick="startMusicAndNext()">Click Me 💜</button>
-</div>
-  
-  <!-- Page 2 -->
-  <div class="page hidden" id="page2">
-    <h1>Every star reminds me of you 🌌</h1>
-    <button onclick="nextPage()">Next</button>
+  <!-- Pages -->
+  <div id="page1" class="page active">
+    <img src="Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" alt="Love Image">
+    <button onclick="nextPage()">Start</button>
   </div>
+  <div id="page2" class="page"><p>Every galaxy reminds me of your beauty ✨</p><button onclick="nextPage()">Next</button></div>
+  <div id="page3" class="page"><p>My heart only orbits around you 💜</p><button onclick="nextPage()">Next</button></div>
+  <div id="page4" class="page"><p>Like stars, my love for you is countless 🌌</p><button onclick="nextPage()">Next</button></div>
+  <div id="page5" class="page"><p>You shine brighter than any constellation 💫</p><button onclick="nextPage()">Next</button></div>
+  <div id="page6" class="page"><p>No distance can pull us apart 🌠</p><button onclick="nextPage()">Next</button></div>
+  <div id="page7" class="page"><p>Forever, you are my universe 🌍</p><button onclick="nextPage()">Next</button></div>
+  <div id="page8" class="page"><p>iloveyouuu too 💕</p><button onclick="stopMusic()">End</button></div>
 
-  <div class="page hidden" id="page3">
-    <h1>You are my galaxy 💫</h1>
-    <button onclick="nextPage()">Next</button>
-  </div>
+  <!-- Music -->
+  <audio id="bgMusic" loop>
+    <source src="APO_Hiking_Society_-_When_I_Met_You_Official_Lyric_Video_(128k) (online-audio-converter.com).mp3" type="audio/mpeg">
+    Your browser does not support the audio tag.
+  </audio>
 
-  <div class="page hidden" id="page4">
-    <h1>No distance can dim your light ✨</h1>
-    <button onclick="nextPage()">Next</button>
-  </div>
+  <script>
+    let currentPage = 1;
+    const totalPages = 8;
+    const music = document.getElementById("bgMusic");
 
-  <div class="page hidden" id="page5">
-    <h1>You are my only universe 💜</h1>
-    <button onclick="nextPage()">Next</button>
-  </div>
+    function showPage(page) {
+      for (let i = 1; i <= totalPages; i++) {
+        document.getElementById("page" + i).classList.remove("active");
+      }
+      document.getElementById("page" + page).classList.add("active");
+    }
 
-  <div class="page hidden" id="page6">
-    <h1>Forever tied with my soul 🔮</h1>
-    <button onclick="nextPage()">Next</button>
-  </div>
+    function nextPage() {
+      if (currentPage === 1) {
+        music.play();
+      }
+      currentPage++;
+      if (currentPage <= totalPages) {
+        showPage(currentPage);
+      }
+    }
 
-  <div class="page hidden" id="page7">
-    <h1>My heart beats only for you 💓</h1>
-    <button onclick="nextPage()">Next</button>
-  </div>
-
-  <div class="page hidden" id="page8">
-    <h1>I love youuu too 💜</h1>
-    <button onclick="stopMusic()">The End</button>
-  </div>
-
-  <script src="script.js"></script>
+    function stopMusic() {
+      music.pause();
+      music.currentTime = 0;
+      alert("Music stopped. End of the journey 💜");
+    }
+  </script>
 </body>
   </html>
