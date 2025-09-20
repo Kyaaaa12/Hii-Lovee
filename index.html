@@ -2,95 +2,128 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For My Love</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Message 💜</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #2b0040, #000);
-      color: #d8b4f8;
-      text-align: center;
+      padding: 0;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
+      background: radial-gradient(circle at top, #2e004f, #000000);
+      color: #e0b3ff;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
     .page {
       display: none;
-      padding: 20px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
-    .active {
-      display: block;
-    }
-    img {
-      max-width: 80%;
-      border-radius: 15px;
-      box-shadow: 0 0 30px #a855f7;
+    .page.active {
+      display: flex;
     }
     button {
-      background: #6b21a8;
+      background-color: #6a0dad;
       border: none;
-      padding: 12px 20px;
-      border-radius: 12px;
+      padding: 12px 24px;
       margin-top: 20px;
+      font-size: 18px;
       color: white;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s;
     }
     button:hover {
-      background: #9333ea;
+      background-color: #9932cc;
+    }
+    img {
+      max-width: 70%;
+      height: auto;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
     }
   </style>
 </head>
 <body>
-  <!-- Pages -->
-  <div id="page1" class="page active">
-    <img src="Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" alt="Love Image">
-    <button onclick="nextPage()">Start</button>
-  </div>
-  <div id="page2" class="page"><p>Every galaxy reminds me of your beauty ✨</p><button onclick="nextPage()">Next</button></div>
-  <div id="page3" class="page"><p>My heart only orbits around you 💜</p><button onclick="nextPage()">Next</button></div>
-  <div id="page4" class="page"><p>Like stars, my love for you is countless 🌌</p><button onclick="nextPage()">Next</button></div>
-  <div id="page5" class="page"><p>You shine brighter than any constellation 💫</p><button onclick="nextPage()">Next</button></div>
-  <div id="page6" class="page"><p>No distance can pull us apart 🌠</p><button onclick="nextPage()">Next</button></div>
-  <div id="page7" class="page"><p>Forever, you are my universe 🌍</p><button onclick="nextPage()">Next</button></div>
-  <div id="page8" class="page"><p>iloveyouuu too 💕</p><button onclick="stopMusic()">End</button></div>
-
-  <!-- Music -->
-  <audio id="bgMusic" loop>
+  <!-- Background music -->
+  <audio id="bg-music" loop>
     <source src="APO_Hiking_Society_-_When_I_Met_You_Official_Lyric_Video_(128k) (online-audio-converter.com).mp3" type="audio/mpeg">
-    Your browser does not support the audio tag.
   </audio>
+
+  <!-- Pages -->
+  <div class="page active" id="page1">
+    <img src="Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" alt="Love Start">
+    <button onclick="startMusicAndNext()">Click Me 💜</button>
+  </div>
+
+  <div class="page" id="page2">
+    <h2>From the moment I saw you...</h2>
+    <img src="Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" alt="Love Image">
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="page" id="page3">
+    <h2>You became my universe 💫</h2>
+    <img src="Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" alt="Love Image">
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="page" id="page4">
+    <h2>Every second with you feels magical ✨</h2>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="page" id="page5">
+    <h2>You’re the reason my heart beats faster 💜</h2>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="page" id="page6">
+    <h2>My love for you shines brighter than the stars 🌌</h2>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="page" id="page7">
+    <h2>No distance, no time, nothing can change that 💍</h2>
+    <button onclick="nextPage()">Next ➡️</button>
+  </div>
+
+  <div class="page" id="page8">
+    <h2>I love youuu baby 💜</h2>
+    <button onclick="stopMusic()">Stop Music & End</button>
+  </div>
 
   <script>
     let currentPage = 1;
     const totalPages = 8;
-    const music = document.getElementById("bgMusic");
+    const music = document.getElementById("bg-music");
 
-    function showPage(page) {
-      for (let i = 1; i <= totalPages; i++) {
-        document.getElementById("page" + i).classList.remove("active");
-      }
-      document.getElementById("page" + page).classList.add("active");
+    function startMusicAndNext() {
+      music.play().catch(err => console.log("Autoplay blocked:", err));
+      showPage(2);
     }
 
     function nextPage() {
-      if (currentPage === 1) {
-        music.play();
+      if (currentPage < totalPages) {
+        showPage(currentPage + 1);
       }
-      currentPage++;
-      if (currentPage <= totalPages) {
-        showPage(currentPage);
-      }
+    }
+
+    function showPage(pageNumber) {
+      document.getElementById(`page${currentPage}`).classList.remove("active");
+      document.getElementById(`page${pageNumber}`).classList.add("active");
+      currentPage = pageNumber;
     }
 
     function stopMusic() {
       music.pause();
       music.currentTime = 0;
-      alert("Music stopped. End of the journey 💜");
+      alert("Music stopped 💜");
     }
   </script>
 </body>
-  </html>
+    </html>
