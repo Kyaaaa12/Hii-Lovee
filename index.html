@@ -2,143 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Galaxy Love Story</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #2b1055, #7597de, #3a0ca3, #f72585);
-      background-size: 400% 400%;
-      animation: galaxyFlow 20s ease infinite;
-      color: white;
-      font-family: 'Trebuchet MS', sans-serif;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      transition: background 1s ease-in-out;
-      background-position: center;
-      background-size: cover;
-    }
-
-    @keyframes galaxyFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    section {
-      display: none;
-    }
-
-    section.active {
-      display: block;
-    }
-
-    h1 {
-      font-size: 3em;
-      text-shadow: 0px 0px 15px #fff, 0px 0px 30px #f72585;
-    }
-
-    button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: #f72585;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-weight: bold;
-      box-shadow: 0px 0px 20px #f72585;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #3a0ca3;
-      box-shadow: 0px 0px 25px #fff;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For You 💜</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Page 1 -->
-  <section id="page1" class="active">
-    <h1>💫 Welcome, My Love 💫</h1>
-    <button onclick="startStory()">Next →</button>
-  </section>
-
-  <!-- Page 2 -->
-  <section id="page2">
-    <h1>🌌 Every star in the galaxy reminds me of you 🌌</h1>
-    <button onclick="nextPage(3)">Next →</button>
-  </section>
-
-  <!-- Page 3 -->
-  <section id="page3">
-    <h1>💜 My love for you is infinite 💜</h1>
-    <button onclick="nextPage(4)">Next →</button>
-  </section>
-
-  <!-- Page 4 -->
-  <section id="page4">
-    <h1>💍 Forever and Always, your baby loves you sm💍</h1>
-    <button onclick="stopMusic()">iloveyouuu too 💜</button>
-  </section>
-
-  <!-- Background music -->
-  <audio id="bg-music" loop>
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
     <source src="APO_Hiking_Society_-_When_I_Met_You_Official_Lyric_Video_(128k) (online-audio-converter.com).mp3" type="audio/mpeg">
     Your browser does not support the audio tag.
   </audio>
 
-  <script>
-    const bgMusic = document.getElementById("bg-music");
+  <!-- Page 1 (Image Only) -->
+  <div class="page" id="page1">
+    <img src="Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" alt="Love Start" class="page-img">
+    <button onclick="nextPage()">Click Me 💜</button>
+  </div>
 
-    // Backgrounds: only Page 2 & 3 have images
-    const backgrounds = {
-      page1: "gradient",
-      page2: "Messenger_creation_4FAF1D83-5887-4F86-9593-2D4E116ECDD7.jpeg",
-      page3: "Messenger_creation_555093F4-980B-4883-ABFF-8B0DC22F98DF.jpeg",
-      page4: "gradient"
-    };
+  <!-- Page 2 -->
+  <div class="page hidden" id="page2">
+    <h1>Every star reminds me of you 🌌</h1>
+    <button onclick="nextPage()">Next</button>
+  </div>
 
-    function setBackground(pageId) {
-      if (backgrounds[pageId] === "gradient") {
-        // Bring back the animated purple galaxy
-        document.body.style.background = "linear-gradient(135deg, #2b1055, #7597de, #3a0ca3, #f72585)";
-        document.body.style.backgroundSize = "400% 400%";
-        document.body.style.animation = "galaxyFlow 20s ease infinite";
-      } else {
-        // Set galaxy image
-        document.body.style.background = backgrounds[pageId];
-        document.body.style.backgroundSize = "cover";
-        document.body.style.animation = "none";
-      }
-    }
+  <!-- Page 3 -->
+  <div class="page hidden" id="page3">
+    <h1>You are my galaxy 💫</h1>
+    <button onclick="nextPage()">Next</button>
+  </div>
 
-    function startStory() {
-      bgMusic.play();
-      nextPage(2);
-    }
+  <!-- Page 4 -->
+  <div class="page hidden" id="page4">
+    <h1>No distance can dim your light ✨</h1>
+    <button onclick="nextPage()">Next</button>
+  </div>
 
-    function nextPage(pageNumber) {
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      const next = document.getElementById("page" + pageNumber);
-      next.classList.add("active");
+  <!-- Page 5 -->
+  <div class="page hidden" id="page5">
+    <h1>You are my only universe 💜</h1>
+    <button onclick="nextPage()">Next</button>
+  </div>
 
-      // Change background depending on page
-      setBackground("page" + pageNumber);
-    }
+  <!-- Page 6 -->
+  <div class="page hidden" id="page6">
+    <h1>Forever tied with my soul 🔮</h1>
+    <button onclick="nextPage()">Next</button>
+  </div>
 
-    function stopMusic() {
-      bgMusic.pause();
-      bgMusic.currentTime = 0;
-      alert("💜 iloveyouuu 💜");
-      setBackground("page4"); // back to gradient
-    }
+  <!-- Page 7 -->
+  <div class="page hidden" id="page7">
+    <h1>My heart beats only for you 💓</h1>
+    <button onclick="nextPage()">Next</button>
+  </div>
 
-    // Initial gradient
-    setBackground("page1");
-  </script>
+  <!-- Page 8 (Final Message) -->
+  <div class="page hidden" id="page8">
+    <h1>I love youuu 💜</h1>
+    <button onclick="stopMusic()">The End</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
