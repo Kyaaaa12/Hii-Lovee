@@ -2,146 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Message 💜</title>
+  <title>For My Love 💜</title>
   <style>
     body {
       margin: 0;
       padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: radial-gradient(circle at top, #2e003e, #0d001a);
+      color: white;
+      text-align: center;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at top, #2e004f, #000000);
-      color: #e0b3ff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-    .page {
-      display: none;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
-    .page.active {
-      display: flex;
-    }
-    button {
-      background-color: #6a0dad;
-      border: none;
-      padding: 12px 24px;
-      margin-top: 20px;
-      font-size: 18px;
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-    }
-    button:hover {
-      background-color: #9932cc;
-      transform: scale(1.1);
+    #content {
+      max-width: 600px;
     }
     img {
-      max-width: 70%;
-      height: auto;
-      margin: 20px auto;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      max-width: 200px; /* smaller image */
+      border-radius: 15px;
+      margin: 20px 0;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
-    /* Special style for Page 1 */
-    #page1 img {
-      max-width: 25% !important; /* smaller intro image */
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px; /* smaller button */
+      background: #7a00cc;
+      border: none;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
-    #page1 button {
-      font-size: 28px !important; /* bigger button */
-      padding: 20px 50px !important;
+    button:hover {
+      background: #9d4edd;
     }
   </style>
 </head>
 <body>
-  <!-- Background music -->
+  <div id="content">
+    <!-- Content goes here -->
+  </div>
+
+  <!-- Audio -->
   <audio id="bg-music" loop>
-    <source src="APO_Hiking_Society_-_When_I_Met_You_Official_Lyric_Video_(128k) (online-audio-converter.com).mp3" type="audio/mpeg">
+    <source src="APO_Hiking_Society_-_When_I_Met_You_Official_Lyric_Video_(128k) (online-audio-converter.com).mp3" type="audio/mp3">
   </audio>
 
-  <!-- Page 1 (intro) -->
-  <div class="page active" id="page1">
-    <img src="Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" alt="Love Start">
-    <button onclick="startMusicAndNext()">💜 Start My Love Story 💜</button>
-  </div>
-
-  <!-- Page 2 -->
-  <div class="page" id="page2">
-    <h2>From the moment I saw you...</h2>
-    <img src="Messenger_creation_555093F4-980B-4883-ABFF-8B0DC22F98DF.jpeg" alt="Love Image 1">
-    <button onclick="nextPage()">Next ➡️</button>
-  </div>
-
-  <!-- Page 3 -->
-  <div class="page" id="page3">
-    <h2>You became my universe 💫</h2>
-    <img src="Messenger_creation_4FAF1D83-5887-4F86-9593-2D4E116ECDD7.jpeg" alt="Love Image 2">
-    <button onclick="nextPage()">Next ➡️</button>
-  </div>
-
-  <!-- Page 4 -->
-  <div class="page" id="page4">
-    <h2>Every second with you feels magical ✨</h2>
-    <img src="Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" alt="Love Image 3">
-    <button onclick="nextPage()">Next ➡️</button>
-  </div>
-
-  <!-- Page 5 -->
-  <div class="page" id="page5">
-    <h2>You’re the reason my heart beats faster 💜</h2>
-    <button onclick="nextPage()">Next ➡️</button>
-  </div>
-
-  <!-- Page 6 -->
-  <div class="page" id="page6">
-    <h2>My love for you shines brighter than the stars 🌌</h2>
-    <button onclick="nextPage()">Next ➡️</button>
-  </div>
-
-  <!-- Page 7 -->
-  <div class="page" id="page7">
-    <h2>No distance, no time, nothing can change that 💍</h2>
-    <button onclick="nextPage()">Next ➡️</button>
-  </div>
-
-  <!-- Page 8 (final) -->
-  <div class="page" id="page8">
-    <h2>I love youuu baby 💜</h2>
-    <button onclick="stopMusic()">Stop Music & End</button>
-  </div>
-
   <script>
-    let currentPage = 1;
-    const totalPages = 8;
-    const music = document.getElementById("bg-music");
+    const pages = [
+      { text: "Read slowly...", img: "Messenger_creation_40659039-AF93-4871-B96B-CC11D9C69563.jpeg" },
+      { text: "Every moment with you feels like magic ✨" },
+      { text: "You are the reason I smile 💜", img: "Messenger_creation_555093F4-980B-4883-ABFF-8B0DC22F98DF.jpeg" },
+      { text: "When I think of you, everything feels lighter." },
+      { text: "No words can explain how much you mean to me.", img: "Messenger_creation_4FAF1D83-5887-4F86-9593-2D4E116ECDD7.jpeg" },
+      { text: "I want to hold you close forever 💫" },
+      { text: "Even galaxies would envy your beauty 🌌" },
+      { text: "iloveyouuu 💜" , stopMusic: true }
+    ];
 
-    function startMusicAndNext() {
-      music.play().catch(err => console.log("Autoplay blocked:", err));
-      showPage(2);
-    }
+    let currentPage = 0;
+    const contentDiv = document.getElementById("content");
+    const bgMusic = document.getElementById("bg-music");
 
-    function nextPage() {
-      if (currentPage < totalPages) {
-        showPage(currentPage + 1);
+    function renderPage() {
+      let page = pages[currentPage];
+      contentDiv.innerHTML = "";
+
+      let textEl = document.createElement("h2");
+      textEl.textContent = page.text;
+      contentDiv.appendChild(textEl);
+
+      if (page.img) {
+        let imgEl = document.createElement("img");
+        imgEl.src = page.img;
+        contentDiv.appendChild(imgEl);
       }
+
+      let btn = document.createElement("button");
+      btn.textContent = (currentPage === pages.length - 1) ? "I love youuu 💜" : "Next ➜";
+      btn.onclick = () => {
+        if (currentPage === 0) {
+          bgMusic.play();
+        }
+        if (page.stopMusic) {
+          bgMusic.pause();
+          bgMusic.currentTime = 0;
+        }
+        currentPage++;
+        if (currentPage < pages.length) {
+          renderPage();
+        }
+      };
+      contentDiv.appendChild(btn);
     }
 
-    function showPage(pageNumber) {
-      document.getElementById(`page${currentPage}`).classList.remove("active");
-      document.getElementById(`page${pageNumber}`).classList.add("active");
-      currentPage = pageNumber;
-    }
-
-    function stopMusic() {
-      music.pause();
-      music.currentTime = 0;
-      alert("Music stopped 💜");
-    }
+    renderPage();
   </script>
 </body>
-  </html>
+</html>
